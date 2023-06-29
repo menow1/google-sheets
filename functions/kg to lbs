@@ -1,0 +1,18 @@
+function onEdit(e) {
+  var sheet = e.source.getSheetByName("Progress Tracker");
+  var editedCell = e.range;
+
+  if (sheet.getName() === "Progress Tracker" && editedCell.getRow() === 10 && editedCell.getColumn() === 3) {
+    var unitCell = sheet.getRange("G8");
+    var weightCell = sheet.getRange("C10");
+    var unitPreference = unitCell.getValue();
+
+    if (unitPreference === "kg") {
+      var weightValue = weightCell.getValue().replace(" lbs", "");
+      weightCell.setValue(weightValue + " kg");
+    } else if (unitPreference === "lbs") {
+      var weightValue = weightCell.getValue().replace(" kg", "");
+      weightCell.setValue(weightValue + " lbs");
+    }
+  }
+}
